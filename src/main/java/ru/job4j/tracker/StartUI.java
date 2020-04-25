@@ -11,7 +11,7 @@ public class StartUI {
         System.out.println("Order with the name : " + name + " created");
     }
 
-    public static void showNewItem(Tracker tracker) {
+    public static void showAllItem(Tracker tracker) {
         System.out.println("=== All Items ====");
         Item[] items = tracker.findAll();
         for (int index = 0; index < items.length; index++) {
@@ -24,27 +24,18 @@ public class StartUI {
     public static void editItem(Input input, Tracker tracker) {
         System.out.println("=== Edit Item ====");
         String id = input.askStr("Enter id: ");
-        Item items = tracker.findById(id);
-        if (items.getId().equals(id)) {
-            String name = input.askStr("Enter new name: ");
-            Item item = new Item(name);
-            tracker.replace(id, item);
-            System.out.println("The order with id: " + id + " has been replaced");
-        } else {
-            System.out.println("Not found id");
-        }
+        String name = input.askStr("Enter new name: ");
+        Item item = new Item(name);
+        tracker.replace(id, item);
+        System.out.println("The order with id: " + id + " has been replaced");
+
     }
 
     public static void deleteItem(Input input, Tracker tracker) {
         System.out.println("=== Delete Item ====");
         String id = input.askStr("Enter id: ");
-        Item items = tracker.findById(id);
-        if (items.getId().equals(id)) {
-            tracker.delete(id);
-            System.out.println("Order with id: " + id + " deleted");
-        } else {
-            System.out.println("Not found id");
-        }
+        tracker.delete(id);
+        System.out.println("Order with id: " + id + " deleted");
     }
 
     public static void findItemById(Input input, Tracker tracker) {
