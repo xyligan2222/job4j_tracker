@@ -21,21 +21,36 @@ public class StartUI {
         }
     }
 
-    public static void replaceItem(Input input, Tracker tracker) {
+    public static boolean replaceItem(Input input, Tracker tracker) {
+        boolean result = false;
         System.out.println("=== Edit Item ====");
         String id = input.askStr("Enter id: ");
         String name = input.askStr("Enter new name: ");
         Item item = new Item(name);
-        tracker.replace(id, item);
-        System.out.println("The order with id: " + id + " has been replaced");
+        if (item.getId().equals(id)) {
+            tracker.replace(id, item);
+            System.out.println("The order with id: " + id + " has been replaced");
+            return result == true;
+        } else {
+            System.out.println("Not found id");
+            return result;
+        }
 
     }
 
-    public static void deleteItem(Input input, Tracker tracker) {
+    public static boolean deleteItem(Input input, Tracker tracker) {
+        boolean result = false;
         System.out.println("=== Delete Item ====");
         String id = input.askStr("Enter id: ");
-        tracker.delete(id);
-        System.out.println("Order with id: " + id + " deleted");
+        Item items = tracker.findById(id);
+        if (items.getId().equals(id)) {
+            tracker.delete(id);
+            System.out.println("Order with id: " + id + " deleted");
+            return result == true;
+        } else {
+            System.out.println("Not found id");
+            return result;
+        }
     }
 
     public static void findItemById(Input input, Tracker tracker) {
