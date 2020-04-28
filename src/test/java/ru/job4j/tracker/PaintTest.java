@@ -44,6 +44,7 @@ public class PaintTest {
         );
     }
 
+
     @Test
     public void whenDrawSquare2() {
         new Paint().draw(new Square());
