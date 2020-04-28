@@ -26,7 +26,7 @@ public class PaintTest {
                                 .add("+     +")
                                 .add("+     +")
                                 .add("++++")
-                                .add(System.lineSeparator())
+                               // .add(System.lineSeparator())
                                 .toString()
                 )
         );
@@ -46,12 +46,12 @@ public class PaintTest {
         assertThat(
                 new String(out.toByteArray()),
                 is(
-                        new StringBuilder()
-                                .append("++++")
-                                .append("+     +")
-                                .append("+     +")
-                                .append("++++")
-                                .append(System.lineSeparator())
+                        new StringJoiner(System.lineSeparator())
+                                .add("++++")
+                                .add("+     +")
+                                .add("+     +")
+                                .add("++++")
+                               // .append(System.lineSeparator())
                                 .toString()
                 )
         );
