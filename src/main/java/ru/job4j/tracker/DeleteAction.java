@@ -10,8 +10,7 @@ public class DeleteAction implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         String id = input.askStr("Enter id: ");
         Item items = tracker.findById(id);
-        if (items.getId().equals(id)) {
-            tracker.delete(id);
+        if (tracker.delete(id)) {
             System.out.println("Order with id: " + id + " deleted");
             return true;
         } else {

@@ -12,8 +12,7 @@ public class ReplaceAction implements UserAction {
         String id = input.askStr("Enter id: ");
         String name = input.askStr("Enter new name: ");
         Item item = new Item(name);
-        if (item.getId().equals(id)) {
-            tracker.replace(id, item);
+        if (tracker.replace(id, item)) {
             System.out.println("The order with id: " + id + " has been replaced");
             return false;
         } else {
