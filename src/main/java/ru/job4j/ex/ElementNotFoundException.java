@@ -8,19 +8,20 @@ public class ElementNotFoundException extends Exception {
     }
     public static class FindEl {
         public static int indexOf(String[] value, String key) throws ElementNotFoundException {
-            int rsl = 0;
+            int rsl = -1;
+            int number = 0;
 
             for (String check : value) {
                 if (key.equals(check)) {
-                    break;
+                    rsl++;
+                break;
                 }
-                rsl++;
+                number++;
             }
-            if (rsl == 0) {
+            if (rsl == -1) {
                 throw new ElementNotFoundException("array doesn't contains \"key\"");
-
             }
-            return rsl;
+            return number;
         }
     }
 
@@ -30,7 +31,6 @@ public class ElementNotFoundException extends Exception {
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
 }
