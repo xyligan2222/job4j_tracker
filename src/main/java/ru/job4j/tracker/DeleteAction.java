@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DeleteAction implements UserAction {
     @Override
     public String name() {
@@ -9,7 +12,7 @@ public class DeleteAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         String id = input.askStr("Enter id: ");
-        Item items = tracker.findById(id);
+        List<Item> items = new ArrayList<>();
         if (tracker.delete(id)) {
             System.out.println("Order with id: " + id + " deleted");
             return true;
