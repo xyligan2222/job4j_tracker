@@ -18,11 +18,6 @@ public class PassportOffice {
 
 
     public Citizen get(String passport) {
-        Citizen rsl = null;
-            for (Map.Entry entry : citizens.entrySet()) {
-                if (passport != null && entry.getKey().equals(passport))
-                rsl = citizens.get(entry.getKey());
-            }
-        return rsl;
+        return citizens.get(passport);
     }
 }

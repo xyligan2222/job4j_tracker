@@ -44,6 +44,7 @@ public class Shop {
                 System.out.println("null");
             }
         }
+
     }
     public Product[] delete (Product[] products, int index){
         for (int i = index; i < products.length - 1; i++) {

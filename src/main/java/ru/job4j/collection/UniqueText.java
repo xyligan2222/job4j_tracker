@@ -12,8 +12,9 @@ public class UniqueText {
             check.add(origins);
         }
         for (String texts: text) {
-            if (check.contains(texts) == false) {
+            if (!check.contains(texts)) {
                 rsl = false;
+                break;
             }
         }
 
