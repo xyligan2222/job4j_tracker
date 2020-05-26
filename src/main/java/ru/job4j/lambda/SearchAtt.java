@@ -29,24 +29,13 @@ public class SearchAtt {
         return rsl;
     }
 
-    public static List<Attachment> filter2(Predicate<Attachment> filter1) {
+    public static List<Attachment> filter2(Predicate<Attachment> filter1, List<Attachment> list) {
         List<Attachment> rsl = new ArrayList<>();
-        for (Attachment att : rsl) {
+        for (Attachment att : list) {
             if (filter1.test(att)) {
                 rsl.add(att);
             }
         }
         return rsl;
     }
-
-    public static List<Attachment> filter(Predicate<Attachment> filter1) {
-        List<Attachment> rsl = new ArrayList<>();
-        for (Attachment att : rsl) {
-            if (att.getName().contains("bug") || att.getSize() > 100) {
-                rsl.add(att);
-            }
-        }
-        return rsl;
-    }
-
 }
