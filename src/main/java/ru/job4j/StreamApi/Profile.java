@@ -7,9 +7,7 @@ import java.util.stream.Collectors;
 public class Profile {
     private Address address;
 
-    public static List<Address> collect(List<Profile> profiles) {
-    return profiles.stream().map((n) -> n.getAddress()).collect(Collectors.toList());
-    }
+
 
     public Profile(Address address) {
         this.address = address;
