@@ -22,7 +22,7 @@ public class Student {
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
         return score == student.score &&
-                Objects.equals(surname, student.surname);
+                surname.equals(student.surname);
     }
 
     @Override
@@ -41,5 +41,11 @@ public class Student {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
+    public int compareTo(Object o) {
+        Student student = (Student) o;
+        return Integer.compare(this.score, student.getScore());
+    }
+
 
 }
