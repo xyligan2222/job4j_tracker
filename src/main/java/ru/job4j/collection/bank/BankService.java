@@ -3,46 +3,37 @@ package ru.job4j.collection.bank;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BankService {
     private Map<User, List<Account>> users = new HashMap<>();
 
-    public void addUser(User user) {
-        users.putIfAbsent(user, new ArrayList<Account>());
+    public boolean addUser(User user) {
+        boolean rsl = false;
+        if (users.putIfAbsent(user, new ArrayList<Account>()) == null) {
+            rsl = true;
+        }
+        return rsl;
     }
 
     public void addAccount(String passport, Account account) {
-       User user = findByPassport(passport);
-        List<Account> accountList = users.get(user);
+        List<Account> accountList = users.get(findByPassport(passport));
             if (!accountList.contains(account)) {
                 accountList.add(account);
         }
     }
 
-
-
     public User findByPassport(String passport) {
-        User rsl = null;
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                rsl = user;
-                break;
-            }
-        }
-        return rsl;
+        Set<User> findPass = users.keySet();
+        return findPass.stream().distinct().filter(x -> x.getPassport().equals(passport)).findAny().orElse(null);
     }
 
     public Account findByRequisite(String passport, String requisite) {
         Account rsl = null;
         User user = findByPassport(passport);
         if (user != null) {
-        List<Account> accounts = users.get(user);
-            for (Account account : accounts) {
-                if (account.getRequisite().equals(requisite)) {
-                 rsl = account;
-                 break;
-                }
-            }
+            List<Account> accounts = users.get(user);
+            rsl = accounts.stream().distinct().filter(x -> x.getRequisite().equals(requisite)).findAny().orElse(null);
         }
         return rsl;
     }
@@ -59,6 +50,7 @@ public class BankService {
         }
         return rsl;
     }
+
     public static void main(String[] args) {
         List<Account> accounts = new ArrayList<>();
         String requisite = "3fdsbb9";
