@@ -20,7 +20,7 @@ public class TestProfile {
         );
 
         List<Address> result = Profiles.collect(input);
-        List<Address> expected = Arrays.asList(
+        List<Address> expected = List.of(
                 new Address("Madrid1", "Lenina", 22, 12),
                 new Address("Madrid2", "Lenina", 8, 10),
                 new Address("Madrid3", "Lenina", 9, 11),

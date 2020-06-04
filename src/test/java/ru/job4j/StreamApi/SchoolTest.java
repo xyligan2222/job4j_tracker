@@ -25,7 +25,7 @@ public class SchoolTest {
                 );
         School school = new School();
         List<Student> result = school.collect(input, n -> n.getScore() >= 70 && n.getScore() <= 100);
-        List<Student> expected = Arrays.asList(
+        List<Student> expected = List.of(
                 new Student("Ivanov", 90),
                 new Student("Shirokov", 95)
 

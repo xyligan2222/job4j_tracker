@@ -22,7 +22,7 @@ public class SearchAttTest {
                 return attachment.getName().contains("Bug") || attachment.getSize() > 100;
             }
         };
-        List<Attachment> input = Arrays.asList(
+        List<Attachment> input = List.of(
                 new Attachment("image 1", 101),
                 new Attachment("image 2", 34),
                 new Attachment("image 3", 13));

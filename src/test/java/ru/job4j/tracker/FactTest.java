@@ -16,6 +16,6 @@ public class FactTest {
     @Test
     public void whenFactPositive() {
         int rsl = Fact.calc(5);
-        assertThat(rsl,is(120));
+        assertThat(rsl, is(120));
     }
 }
