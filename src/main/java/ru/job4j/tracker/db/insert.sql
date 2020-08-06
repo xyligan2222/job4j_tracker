@@ -1,0 +1,14 @@
+﻿insert into items (name) values ('Item number 1');
+insert into items (name) values ('Item number 2');
+insert into items (name) values ('Item number 3');
+insert into items (name) values ('Item number 4');
+insert into items (name) values ('Item number 5');
+insert into items (name) values ('Item number 6');
+insert into items (name) values ('Item number 7');
+insert into items (name) values ('Item number 8');
+insert into items (name) values ('Item number 9');
+insert into items (name) values ('Item number 10');
+insert into items (name) values ('Item number 11');
+insert into items (name) values ('Item number 12');
+insert into items (name) values ('Item number 13');
+insert into items (name) values ('Item number 14');
