@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.*;
 
-public class Tracker {
+public class MemTracker {
     private final List<Item> items = new ArrayList<>();
     private int position = 0;
 
@@ -16,7 +16,7 @@ public class Tracker {
         this.items.add(item);
         return item;
     }
-    public List<Item> findAll(){
+    public List<Item> findAll() {
         return items;
     }
 
@@ -38,11 +38,11 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
         boolean result = false;
-        if (index >= 0) {
-            item.setId(items.get(index).getId());
-            items.set(index, item);
-            result = true;
-        }
+                if (index >= 0) {
+                    item.setId(items.get(index).getId());
+                    items.set(index, item);
+                    result = true;
+                }
         return result;
     }
 

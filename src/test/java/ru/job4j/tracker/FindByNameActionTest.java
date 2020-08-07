@@ -15,13 +15,13 @@ public class FindByNameActionTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream stdOut = System.out;
         System.setOut(new PrintStream(out));
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("fix bug");
         tracker.add(item);
         FindItemByNameAction action = new FindItemByNameAction();
-        action.execute(new StubInput(new String[] {"fix bug"}), tracker);
-        String expect = new StringJoiner(System.lineSeparator(), "" , System.lineSeparator())
-                .add( "Order № 1"
+        action.execute(new StubInput(new String[] {"fix bug"}), (Store) tracker);
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("Order № 1"
                         + " name: " + item.getName()
                         + " id: " + item.getId()
                 )

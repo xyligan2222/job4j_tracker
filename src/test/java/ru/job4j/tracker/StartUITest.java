@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -17,16 +16,16 @@ public class StartUITest {
     public void whenAddItem() {
         String[] answers = {"Fix PC"};
         Input input = new StubInput(answers);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         CreateAction createAction = new CreateAction();
-        createAction.execute(input, tracker);
+        createAction.execute(input, (Store) tracker);
         Item created = tracker.findAll().get(0);
         Item expected = new Item("Fix PC");
         assertThat(created.getName(), is(expected.getName()));
     }
     @Test
     public void whenReplaceItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {
@@ -34,19 +33,19 @@ public class StartUITest {
                 "replaced item"
         };
         ReplaceAction replaceAction = new ReplaceAction();
-        replaceAction.execute(new StubInput(answers), tracker);
+        replaceAction.execute(new StubInput(answers), (Store) tracker);
         Item replaced = tracker.findById(item.getId());
         assertThat(replaced.getName(), is("replaced item"));
     }
     @Test
     public void whenDeleteItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("new item");
         tracker.add(item);
         String id = item.getId();
         String[] answers = {id};
         DeleteAction deleteAction = new DeleteAction();
-        deleteAction.execute(new StubInput(answers), tracker);
+        deleteAction.execute(new StubInput(answers), (Store) tracker);
         Item deleted = tracker.findById(item.getId());
         String expected = null;
         assertThat(deleted, is(expected));
@@ -57,7 +56,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), Arrays.asList(new UserAction[]{action}));
+        new StartUI().init(input, (Store) new MemTracker(), Arrays.asList(new UserAction[]{action}));
         assertThat(action.isCall(), is(true));
     }
 
@@ -70,7 +69,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), Arrays.asList(new UserAction[]{action}));
+        new StartUI().init(input, (Store) new MemTracker(), Arrays.asList(new UserAction[]{action}));
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Menu.")
                 .add("0. Stub action")

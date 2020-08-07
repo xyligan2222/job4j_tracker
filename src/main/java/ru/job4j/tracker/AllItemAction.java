@@ -9,8 +9,8 @@ public class AllItemAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
-        List<Item> items = tracker.findAll();
+    public boolean execute(Input input, Store memtracker) {
+        List<Item> items = memtracker.findAll();
         for (int index = 0; index < items.size(); index++) {
             System.out.println("Order № " + (index + 1)
                     + " name: " + items.get(index).getName()
@@ -18,4 +18,5 @@ public class AllItemAction implements UserAction {
         }
         return true;
     }
+
 }

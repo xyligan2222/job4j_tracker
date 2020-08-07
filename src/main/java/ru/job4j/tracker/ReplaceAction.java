@@ -7,12 +7,12 @@ public class ReplaceAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store memtracker) {
         System.out.println("=== Edit Item ====");
         String id = input.askStr("Enter id: ");
         String name = input.askStr("Enter new name: ");
         Item item = new Item(name);
-        if (tracker.replace(id, item)) {
+        if (memtracker.replace(id, item)) {
             System.out.println("The order with id: " + id + " has been replaced");
             return false;
         } else {
@@ -20,4 +20,5 @@ public class ReplaceAction implements UserAction {
             return true;
         }
     }
+
 }

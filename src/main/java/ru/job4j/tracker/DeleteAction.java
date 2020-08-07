@@ -10,10 +10,10 @@ public class DeleteAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store memtracker) {
         String id = input.askStr("Enter id: ");
         List<Item> items = new ArrayList<>();
-        if (tracker.delete(id)) {
+        if (memtracker.delete(id)) {
             System.out.println("Order with id: " + id + " deleted");
             return true;
         } else {
@@ -21,4 +21,6 @@ public class DeleteAction implements UserAction {
             return false;
         }
     }
+
+
 }

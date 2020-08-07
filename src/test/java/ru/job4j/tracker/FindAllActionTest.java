@@ -15,13 +15,13 @@ public class FindAllActionTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream stdOut = System.out;
         System.setOut(new PrintStream(out));
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("fix bug");
         tracker.add(item);
         AllItemAction action = new AllItemAction();
-        action.execute(new StubInput(new String[] {}), tracker);
-        String expect = new StringJoiner(System.lineSeparator(), "" , System.lineSeparator())
-                .add( "Order № 1 name: " + item.getName()
+        action.execute(new StubInput(new String[] {}), (Store) tracker);
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("Order № 1 name: " + item.getName()
                         + " id: " + item.getId()
                 )
                 .toString();

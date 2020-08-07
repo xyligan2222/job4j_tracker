@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StartUI {
-    public void init(Input input, Tracker tracker, List<UserAction> actions) {
+    public void init(Input input, Store memtracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ", actions.size());
             UserAction action = actions.get(select);
-            run = action.execute(input, tracker);
+            run = action.execute(input,  memtracker);
         }
     }
 
@@ -25,18 +25,23 @@ public class StartUI {
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Input validate = new ValidateInput(input);
-        Tracker tracker = new Tracker();
-        List<UserAction> actions = new ArrayList<>();
-                actions.add(new AllItemAction());
-                actions.add(new CreateAction());
-                actions.add(new DeleteAction());
-                actions.add(new ExitAction());
-                actions.add(new FindItemByIdAction());
-                actions.add(new FindItemByNameAction());
-                actions.add(new ReplaceAction());
+        try (Store memtracker = new SqlTracker()) {
+            memtracker.init();
+            List<UserAction> actions = new ArrayList<>();
+            actions.add(new AllItemAction());
+            actions.add(new CreateAction());
+            actions.add(new DeleteAction());
+            actions.add(new FindItemByIdAction());
+            actions.add(new FindItemByNameAction());
+            actions.add(new ReplaceAction());
+            actions.add(new ExitAction());
 
-        new StartUI().init(input, tracker, actions);
+            new StartUI().init(validate, memtracker, actions);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 }
 
 

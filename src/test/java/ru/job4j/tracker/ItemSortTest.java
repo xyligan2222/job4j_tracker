@@ -8,9 +8,10 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class ItemSortTest {
+    @SuppressWarnings("checkstyle:MethodName")
     @Test
-    public void SortItem() {
-        List<Item> items = Arrays.asList(
+    public void whenSortItem() {
+        List<Item> items = List.of(
                 new Item("Andrey"),
                 new Item("Andrew"),
                 new Item("Vadim"),
@@ -18,7 +19,7 @@ public class ItemSortTest {
                 new Item("Alexey")
         );
 
-        List<Item> check = Arrays.asList(
+        List<Item> check = List.of(
                 items.get(4),
                 items.get(1),
                 items.get(0),
@@ -30,8 +31,8 @@ public class ItemSortTest {
     }
 
     @Test
-    public void SortItemReverse() {
-        List<Item> items = Arrays.asList(
+    public void sortItemReverse() {
+        List<Item> items = List.of(
                 new Item("Andrey"),
                 new Item("Andrew"),
                 new Item("Vadim"),
@@ -39,7 +40,7 @@ public class ItemSortTest {
                 new Item("Alexey")
         );
 
-        List<Item> check = Arrays.asList(
+        List<Item> check = List.of(
                 items.get(2),
                 items.get(3),
                 items.get(0),
