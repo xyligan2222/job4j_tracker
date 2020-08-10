@@ -34,19 +34,20 @@ public class SqlTracker implements Store {
 
     @Override
     public Item add(Item item) {
-        try (PreparedStatement st = cn.prepareStatement("INSERT INTO items (name) values (?)")) {
+        try (PreparedStatement st = cn.prepareStatement("INSERT INTO items (name) values (?)", Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, item.getName());
-            st.execute();
+            st.executeUpdate();
             ResultSet rsl = st.getGeneratedKeys();
             if (rsl.next()) {
                 item.setId(rsl.getString(1));
             }
             rsl.close();
-            return item;
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            System.out.println(item.getName());
         }
-        return null;
+        return item;
     }
 
     @Override
@@ -60,7 +61,6 @@ public class SqlTracker implements Store {
             if (row > 0) {
                 rsl = true;
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
