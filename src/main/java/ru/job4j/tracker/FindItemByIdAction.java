@@ -11,7 +11,7 @@ public class FindItemByIdAction implements UserAction {
         String id = input.askStr("Enter id: ");
         Item item = memtracker.findById(id);
         if (item != null) {
-            System.out.println(" Name: " + item.getName() + " id: " + item.getId());
+            System.out.println(String.format(" Name: %s, id: %s", item.getName(), item.getId()));
         } else {
             System.out.println("No order with this id ");
         }

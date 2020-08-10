@@ -7,8 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class SqlTracker implements Store {
-    private Connection cn = null;
+public class SqlTracker implements Store, AutoCloseable {
+    private Connection cn;
+
+
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
+    public SqlTracker() {
+        init();
+    }
 
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
@@ -37,17 +46,18 @@ public class SqlTracker implements Store {
         try (PreparedStatement st = cn.prepareStatement("INSERT INTO items (name) values (?)", Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, item.getName());
             st.executeUpdate();
-            ResultSet rsl = st.getGeneratedKeys();
-            if (rsl.next()) {
-                item.setId(rsl.getString(1));
+            try (ResultSet rsl = st.getGeneratedKeys()) {
+                if (rsl.next()) {
+                    item.setId(rsl.getString(1));
+                    return item;
+                }
             }
-            rsl.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             System.out.println(item.getName());
         }
-        return item;
+        throw new IllegalStateException("Could not create new user");
     }
 
     @Override
