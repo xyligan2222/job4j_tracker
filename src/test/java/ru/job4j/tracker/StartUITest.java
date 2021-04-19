@@ -58,12 +58,12 @@ public class StartUITest {
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {
-                item.getId(),
+                String.valueOf(item.getId()),
                 "replaced item"
         };
         ReplaceAction replaceAction = new ReplaceAction();
         replaceAction.execute(new StubInput(answers), tracker);
-        Item replaced = tracker.findById(item.getId());
+        Item replaced = tracker.findById(String.valueOf(item.getId()));
         assertThat(replaced.getName(), is("replaced item"));
     }
     @Test
@@ -71,11 +71,11 @@ public class StartUITest {
         Store tracker = new SqlTracker(ConnectionRollback.create(this.init()));
         Item item = new Item("new item");
         tracker.add(item);
-        String id = item.getId();
+        String id = String.valueOf(item.getId());
         String[] answers = {id};
         DeleteAction deleteAction = new DeleteAction();
         deleteAction.execute(new StubInput(answers), (Store) tracker);
-        Item deleted = tracker.findById(item.getId());
+        Item deleted = tracker.findById(String.valueOf(item.getId()));
         String expected = null;
         assertThat(deleted, is(expected));
     }

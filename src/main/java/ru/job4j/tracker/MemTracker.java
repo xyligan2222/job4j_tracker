@@ -6,9 +6,9 @@ public class MemTracker {
     private final List<Item> items = new ArrayList<>();
     private int position = 0;
 
-    private String generateId() {
+    private Integer generateId() {
         Random rm = new Random();
-        return String.valueOf(rm.nextLong() + System.currentTimeMillis());
+        return Math.toIntExact(rm.nextLong() + System.currentTimeMillis());
     }
 
     public Item add(Item item) {

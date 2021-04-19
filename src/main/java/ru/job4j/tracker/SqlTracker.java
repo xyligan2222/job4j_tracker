@@ -48,7 +48,7 @@ public class SqlTracker implements Store, AutoCloseable {
             st.executeUpdate();
             try (ResultSet rsl = st.getGeneratedKeys()) {
                 if (rsl.next()) {
-                    item.setId(rsl.getString(1));
+                    item.setId(Integer.valueOf(rsl.getString(1)));
                     return item;
                 }
             }
@@ -101,7 +101,7 @@ public class SqlTracker implements Store, AutoCloseable {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 Item item = new Item(name);
-                item.setId(String.valueOf(id));
+                item.setId((id));
                 list.add(item);
             }
         } catch (SQLException e) {
@@ -121,7 +121,7 @@ public class SqlTracker implements Store, AutoCloseable {
                 int id = rslSet.getInt("id");
                 String name = rslSet.getString("name");
                 Item item = new Item(name);
-                item.setId(String.valueOf(id));
+                item.setId(id);
                 list.add(item);
             }
         } catch (SQLException e) {
@@ -141,7 +141,7 @@ public class SqlTracker implements Store, AutoCloseable {
                 int itemId = rslSet.getInt("id");
                 String name = rslSet.getString("name");
                 rsl = new Item(name);
-                rsl.setId(String.valueOf(itemId));
+                rsl.setId(itemId);
             }
         } catch (Exception e) {
             e.printStackTrace();

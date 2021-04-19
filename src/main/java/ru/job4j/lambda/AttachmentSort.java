@@ -4,6 +4,7 @@ package ru.job4j.lambda;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 
 public class AttachmentSort {
     public static void main(String[] args) {
@@ -12,24 +13,13 @@ public class AttachmentSort {
                 new Attachment("image 2", 34),
                 new Attachment("image 3", 13)
         );
-        Comparator<Attachment> sizeCmp =  new Comparator<Attachment>() {
-            @Override
-            public int compare(Attachment left, Attachment right) {
-                return left.getSize() - right.getSize();
-            }
-        };
+        Comparator<Attachment> sizeCmp = Comparator.comparingInt(Attachment::getSize);
         attachments.sort(sizeCmp);
         System.out.println(attachments);
 
-        Comparator<Attachment> nameCmp =  new Comparator<Attachment>() {
-            @Override
-            public int compare(Attachment o1, Attachment o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        };
+        Comparator<Attachment> nameCmp = Comparator.comparing(Attachment::getName);
         attachments.sort(nameCmp);
         System.out.println(attachments);
-
 
     }
 }
