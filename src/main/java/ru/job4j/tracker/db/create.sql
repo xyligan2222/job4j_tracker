@@ -1,1 +1,1 @@
-﻿create table items ( id serial primary key, name text);
+﻿create table items ( id serial primary key, name varchar(2000));
