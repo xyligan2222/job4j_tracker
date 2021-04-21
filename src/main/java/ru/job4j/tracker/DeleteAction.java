@@ -13,7 +13,7 @@ public class DeleteAction implements UserAction {
     public boolean execute(Input input, Store memtracker) {
         String id = input.askStr("Enter id: ");
         List<Item> items = new ArrayList<>();
-        if (memtracker.delete(id)) {
+        if (memtracker.delete(Integer.valueOf(id))) {
             System.out.println("Order with id: " + id + " deleted");
             return true;
         } else {

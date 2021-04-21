@@ -63,7 +63,7 @@ public class StartUITest {
         };
         ReplaceAction replaceAction = new ReplaceAction();
         replaceAction.execute(new StubInput(answers), tracker);
-        Item replaced = tracker.findById(String.valueOf(item.getId()));
+        Item replaced = tracker.findById((item.getId()));
         assertThat(replaced.getName(), is("replaced item"));
     }
     @Test
@@ -75,7 +75,7 @@ public class StartUITest {
         String[] answers = {id};
         DeleteAction deleteAction = new DeleteAction();
         deleteAction.execute(new StubInput(answers), (Store) tracker);
-        Item deleted = tracker.findById(String.valueOf(item.getId()));
+        Item deleted = tracker.findById((item.getId()));
         String expected = null;
         assertThat(deleted, is(expected));
     }

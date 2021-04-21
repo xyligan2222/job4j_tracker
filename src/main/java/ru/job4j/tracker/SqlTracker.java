@@ -61,11 +61,11 @@ public class SqlTracker implements Store, AutoCloseable {
     }
 
     @Override
-    public boolean replace(String id, Item item) {
+    public boolean replace(Integer id, Item item) {
         boolean rsl = false;
         try (PreparedStatement st = cn.prepareStatement("UPDATE items values SET name = ? WHERE id = ?;")) {
             st.setString(1, item.getName());
-            st.setInt(2, Integer.parseInt(id));
+            st.setInt(2, (id));
             st.execute();
             int row = st.executeUpdate();
             if (row > 0) {
@@ -78,10 +78,10 @@ public class SqlTracker implements Store, AutoCloseable {
     }
 
     @Override
-    public boolean delete(String id) {
+    public boolean delete(Integer id) {
         boolean rsl = false;
         try (PreparedStatement st = cn.prepareStatement("DELETE FROM items WHERE id = ?;")) {
-            st.setInt(1, Integer.parseInt(id));
+            st.setInt(1, (id));
             int row = st.executeUpdate();
             if (row > 0) {
                 rsl = true;
@@ -132,10 +132,10 @@ public class SqlTracker implements Store, AutoCloseable {
     }
 
     @Override
-    public Item findById(String id) {
+    public Item findById(Integer id) {
         Item rsl = null;
         try (PreparedStatement st = cn.prepareStatement("SELECT * FROM items WHERE id = ?")) {
-            st.setInt(1, Integer.parseInt(id));
+            st.setInt(1, (id));
             ResultSet rslSet = st.executeQuery();
             if (rslSet.next()) {
                 int itemId = rslSet.getInt("id");

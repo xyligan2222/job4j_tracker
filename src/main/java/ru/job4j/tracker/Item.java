@@ -12,8 +12,11 @@ public class Item implements Comparable <Item> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column (name = "name")
     private String name;
+    @Transient
     private String description;
+    @Transient
     private Timestamp created;
 
     public Item() {

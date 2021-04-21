@@ -9,7 +9,7 @@ public class ReplaceAction implements UserAction {
     @Override
     public boolean execute(Input input, Store memtracker) {
         System.out.println("=== Edit Item ====");
-        String id = input.askStr("Enter id: ");
+        Integer id = input.askInt("Enter id: ");
         String name = input.askStr("Enter new name: ");
         Item item = new Item(name);
         if (memtracker.replace(id, item)) {
