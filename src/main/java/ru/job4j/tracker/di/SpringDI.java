@@ -9,10 +9,11 @@ public class SpringDI {
         context.scan("ru.job4j.tracker");
         context.refresh();
         StartUI ui = context.getBean(StartUI.class);
+        StartUI ui2 = context.getBean(StartUI.class);
         ui.add("Petr");
-        ui.add("Andrew");
-        ui.add("Oleg");
-        ui.add("Nikolay");
+        ui2.add("Andrew");
         ui.print();
+        ui2.print();
+        context.close();
     }
 }
